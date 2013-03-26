@@ -1,0 +1,520 @@
+/* Reset Again */
+p {
+    margin:0;
+}
+/* Wells */
+.well {
+    background: #EFEFEF;
+    border-radius: 11px;
+    margin:14px 0 30px;
+    overflow: hidden;
+}
+.well > .padded-content{
+    padding: 28px 24px;
+    margin: 0;
+    overflow: hidden;
+}
+.padded-content div.grid_3.columnOne{
+    margin-left: -24px;
+}
+.padded-content div.grid_8.omega{
+    margin-right:-24px;
+}
+.well > .title {
+    background: #575757;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    margin: 0;
+    overflow: hidden;
+    padding: 11px 24px;
+}
+.well > .title h1{
+    font: bold 18px Helvetica, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    float: left;
+}
+.well h2{
+    color:#585858;
+    font: bold 16px Helvetica, sans-serif;
+    padding: 0;
+}
+.well h2 span{
+    font: normal 11px Helvetica, sans-serif;
+}
+.bottom-well{
+    margin-bottom: 34px;
+}
+.well-link-top{
+    float: right;
+}
+.well .lynda-validate-message.processing{
+    background:transparent url('../images/validate/ajax-loader-well.gif') center left no-repeat;
+}
+.ng-scope .well .lynda-validate-message.processing {
+    left: 3px;
+    top: -1px;
+}
+
+/*All States*/
+.accountState{
+    display: block;
+}
+.billingState, .completeState{
+    display: none;
+}
+#push{
+    height:963px;
+}
+.issueAlert{
+    float:left;
+    margin:10px;
+    width:592px;
+}
+h2{
+    margin: 0;
+    color:#333333;
+    font-size:13px;
+    font-family:'Verdana', sans-serif;
+}
+.light, a.light{
+    color:#585858;
+    font-size:10px;
+}
+input.lynda-validate{
+    margin-right:0;
+}
+input[type="checkbox"]{
+    margin-right:0;
+}
+label{
+    font-family:normal 12px Helvetica, sans-serif;
+    color:#000000;
+}
+label.tip{
+    font-size:10px;
+    color:#585858;
+}
+label.tip.lynda-validate-message{
+    padding:0;
+    background:none;
+}
+label.tip.lynda-validate-message.success{
+    display: none;
+}
+.has_tooltip, .has_tooltip:hover{
+    color:#000;
+    border-bottom:1px dotted #0E628C;
+    text-decoration:none;
+}
+
+/* Sidepod */
+.sidepod{
+    color:#585858;
+    margin-top: 80px;
+}
+.sidepod h2{
+    font: bold 14px Helvetica, sans-serif;
+    color:#000;
+    margin: 0 0 8px;
+}
+.sidepod p{
+    margin-bottom: 25px;
+    font: normal 13px Helvetica, sans-serif;
+    line-height: 1.5;
+}
+.sidepod #safeInfoContainer {
+    margin:0 0 26px;
+    font-size: 10px;
+    line-height: 1.2em;
+    color:#000000;
+}
+.sidepod .bbb-badge, .verisign_seal img{
+    margin-bottom: 20px;
+}
+.sidepod .verisign_seal img{
+    height:50px;
+}
+
+
+/*Account State*/
+
+.accountState.sidepod p{
+    margin-bottom: 64px;
+}
+label{
+    font: normal 13px Helvetica, sans-serif;
+    color: #333333;
+}
+form.accountState label.error{
+    color: #DD1B23;
+}
+#firstNameLabel{
+    margin-right: 82px;
+}
+.well.accountState div{
+    overflow: hidden;
+}
+#trialDetailsText {
+    margin-bottom: 20px;
+}
+#trialDetailsText h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #585858;
+    margin-bottom: 13px;
+    margin-top: -10px;  
+}
+#trialDetailsText p {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #585858;
+    line-height: 180%;
+    margin-bottom: 11px;
+}
+#trialDetailsText ul {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+    color: #585858;
+    line-height: 160%;
+}
+#trialDetailsText li {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+#accountInformationContainer input.short{
+    width: 134px;
+}
+#accountInformationContainer input.medium{
+    width: 199px;
+}
+#accountInformationContainer input.long{
+    width: 283px;
+}
+#accountInformationContainer span.inputTip{
+    font-size:10px;
+    color:#666666;
+    padding: 0;
+    margin: -20px 0 20px;
+    background-image: none;
+    position: relative;
+    top: 4px;
+}
+#accountInformationContainer span.inputTip.error{
+    color: #DD1B23;
+}
+#accountInformationContainer input{
+    margin: 4px 9px 18px 0;
+}
+#accountInformationContainer input[type=checkbox]{
+    margin: 4px 0 18px;
+}
+#accountInformationContainer .action{
+    margin: 12px 0 0 0;
+}
+#accountInformationContainer .action input{
+    margin: 0 9px 0 0;
+}
+
+/*Billing State*/
+.well .pricingOptions{
+    padding: 0 0 36px;
+    margin: 33px 0 28px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.well div.pricingOptions {
+    overflow: hidden;
+    margin: 0 0 28px;
+    padding-bottom: 30px;
+}
+
+.well .pill{
+    background: #fff;
+    border: 1px solid #B3B3B3;
+    border-radius: 4px;
+    padding: 9px 12px 8px 6px;
+    font: bold 13px Helvetica, sans-serif;
+    margin: 0 10px 0 0;
+    display: block;
+    position: relative;
+    float: left;
+    margin-right: 20px;
+}
+.well .pill.active{
+    background: #E7F1FF;
+    border-color: #73BCEB;
+}
+.well label.pillSavings {
+display: none;
+color: #fff;
+width: 118px;
+height: 20px;
+background: transparent url('../images/registration_savings_flag_19B.png') no-repeat center;
+padding: 5px 0 0 28px;
+position: absolute;
+left: 140px;
+top: 6px;
+font: normal 13px Helvetica, sans-serif;
+}
+.well label.pillSavings.exist{
+    display: inline-block;
+}
+
+.columnOne{
+    text-align:right;
+}
+.columnOne.alpha{
+    clear: left;
+}
+form.billingState div{
+    margin-top:11px;
+}
+form.billingState .well-link-top{
+    padding-left: 16px;
+    background: transparent url(../images/btn-mini_questionmark.png) no-repeat;
+}
+form.billingState .well-link-top a{
+    color: #585858;
+    font-size: 12px;
+}
+#ccid_mc{
+    display:inline;
+    position:relative;
+    top:-3px;
+    vertical-align:middle;
+}
+#securityCodeHelpText{
+    font-size:10px;
+}
+#securityCodeTip{
+    display: none;
+}
+#securityCodeTip div{
+    margin:0;
+}
+#securityCodeTip h3{
+    color:#585858;
+    font-size:16px;
+    margin-bottom:16px;
+}
+#securityCodeTip p{
+    color:#333333;
+    margin-bottom:25px;
+}
+form.billingState .ac_input{
+    display:inline;
+    float:left;
+    margin-left:0;
+    width:160px;
+}
+input[name="city"]{
+    margin-right:10px;
+}
+#country-selector{
+    width:114px;
+}
+#stateProvince-selector input{
+    width:108px;
+}
+#stateProvince-selector select{
+    width:114px;
+}
+form.billingState div#cityLabel, form.billingState div#zipLabel{
+    width:116px;
+    float:left;
+}
+form.billingState div#cityLabel.error, form.billingState div#postalCodeLabel.error{
+    color: #DD1B23;
+}
+form.billingState div#stateLabel{
+    width:125px;
+    float:left;
+}
+form.billingState .label{
+    font-size:10px;
+}
+form.billingState .addressLabels, form.billingState .addressLabels div{
+    margin-top:0;
+}
+.billingState.sidepod .contact{
+    margin-bottom: 62px;
+}
+.billingState.sidepod .seals{
+    margin:0;
+}
+.billingState.sidepod .lastBillingParagraph{
+    margin-bottom: 34px;
+}
+.emailPreferences{
+    margin: 2px 0 5px;
+    font: normal 10px Verdana, sans-serif;
+    padding-right: 24px;
+    color: #585858;
+}
+.termsAndConditions{
+    color:#585858;
+    font-weight:bold;
+    margin:3px 0 14px;
+}
+.lynda-validate-message.securityCode{
+    position:relative;
+    top:0px;
+}
+.submitBtn{
+    margin:-10px 0 26px;
+}
+#military_address_link{
+    bottom:16px;
+    font-size:10px;
+    position:relative;
+}
+.military_address_tooltip{
+    margin:0;
+    padding:0;
+}
+.military_address_tooltip p{
+    margin:0 0 0 4px;
+    padding:0;
+}
+.military_address_tooltip p:first-child{
+    margin-bottom:8px;
+}
+
+/* Complete State */
+.completeState.sidepod .playButton{
+    position: relative;
+    top: 3px;
+}
+.columnOne{
+    text-align:right;
+}
+.recieptBox{
+    margin:14px 0 32px;
+}
+.recieptBox p{
+    font: normal 13px Helvetica, sans-serif;
+    margin:14px 0 0;
+}
+.recieptBox div{
+    color:#585858;
+    font: normal 13px Helvetica, sans-serif;
+    margin-top:5px;
+}
+.recieptBox .seperator{
+    border-bottom: 1px solid #ccc;
+    clear: both;
+    margin: 0 0 28px;
+}
+.recieptBox .footer{
+    font: normal 11px Helvetica, sans-serif;
+    color:#585858;
+    margin:-20px 0 24px;
+}
+.recieptBox .details{
+    margin: 7px 0 10px;
+    overflow: hidden;
+}
+.recieptBox .details div{
+    margin-bottom: 2px;
+}
+.recieptBox .message{
+    font: normal 13px Helvetica, sans-serif;
+    color: #000;
+    margin:0px 0 32px;
+    width:590px;
+}
+.recieptBox .actions{
+    margin-bottom: 8px;
+}
+.tooltip{
+    display:none;
+}
+.recieptBox div.btn-save-playlist {
+    margin-top: 35px;
+}
+
+/* Modal Existing Account */
+#modal-existing-account{
+    width: 480px;
+}
+#modal-existing-account h1, #modal-existing-account p{
+    color: #000;
+    font-family: 'Helvetica', sans-serif;
+}
+#modal-existing-account h1{
+    font-size: 15px;
+}
+#modal-existing-account p{
+    font-size: 13px;
+    margin-bottom:25px;
+}
+#modal-existing-account p.last-child{
+    font-size: 11px;
+    margin:25px 0 0;
+}
+
+/* Status Bar */
+#status_bar{
+    height: 42px;
+    margin: 15px 0;
+    background: transparent url('../images/registration_status_bar.gif') no-repeat;
+    width: 100%;
+}
+#status_bar.accountStatus{
+    background-position: 0 0;
+}
+#status_bar.billingStatus{
+    background-position: 0 -42px;
+}
+#status_bar.completeStatus{
+    background-position: 0 -84px;
+}
+
+.well .pricingOptionFrequencies {
+    margin-bottom: 7px;
+}
+
+.well .pricingOptionFrequencies label {
+    font: bold 12px Helvetica, Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0 164px 0 0;
+}
+
+.well label span.billingTerms {
+    display: none;
+    padding: 0;
+    margin: 0;
+    font: normal 13px Helvetica, Arial, sans-serif;
+}
+
+.well label span.billingTerms.exist {
+    display: inline-block;
+}
+
+.well label span.billingTerms .price {
+    font: bold 20px/20px Helvetica, Arial, sans-serif;
+}
+
+.well .pill.annual {
+padding-right: 53px;
+}
+
+.well .pill input {
+vertical-align: top;
+margin: 3px 5px 0 5px;
+padding: 0;
+}
+
+.well h2 span.annualSavings {
+    color: #585858;
+    font: bold 16px Helvetica, sans-serif;
+    padding: 0;
+}
+
+.well div.pricingOptions h2 {
+    margin-bottom: 25px;
+}

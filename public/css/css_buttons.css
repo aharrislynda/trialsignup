@@ -1,0 +1,89 @@
+.lynda-button{
+    -moz-border-radius: 11px;
+    -webkit-appearance: none;
+    -webkit-border-radius: 11px;
+    background-color: #666;
+    behavior: url(/ui/styles/pie.htc);
+    border-radius: 11px;
+    border: 1px solid #666;
+    color: #FFF;
+    cursor: pointer;
+	font: bold 13px/16px arial, sans-serif;
+    margin: 0;
+    padding: 2px 9px 3px 9px;
+    position: relative;
+    text-decoration: none;
+}
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner{
+    border:0;
+    padding:0;
+}
+.lynda-button:hover{
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjYiLz4KICAgIDxzdG9wIG9mZnNldD0iNDAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDxzdG9wIG9mZnNldD0iODAlIiBzdG9wLWNvbG9yPSIjMDAwMDAwIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjIiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+    background-image: -moz-linear-gradient(top,  rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.2) 100%);
+    background-image: -ms-linear-gradient(top,  rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 40%,rgba(0,0,0,0) 80%,rgba(0,0,0,0.2) 100%);
+    background-image: -o-linear-gradient(top,  rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 40%,rgba(0,0,0,0) 80%,rgba(0,0,0,0.2) 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.6)), color-stop(40%,rgba(255,255,255,0)), color-stop(80%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.2)));
+    background-image: -webkit-linear-gradient(top,  rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 40%,rgba(0,0,0,0) 80%,rgba(0,0,0,0.2) 100%);
+    background-image: linear-gradient(top,  rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 40%,rgba(0,0,0,0) 80%,rgba(0,0,0,0.2) 100%);
+    text-decoration: none;
+}
+.lynda-button.large{ 
+    -moz-border-radius: 17px;
+    -webkit-border-radius: 17px;
+    border-radius: 17px;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 5px 14px 6px 14px;
+}
+
+/* Roles */
+.lynda-button.primary{
+    background-color: #0B6998;
+    border-color: #0B6998;
+}
+.lynda-button.warning{
+    background-color: #FFBA00;
+    border-color: #FFBA00;
+    color: #000;
+}
+.lynda-button.warning:hover{ 
+    /* The dark portion of the gradient is too dark for the yellow buttons so we must override it here */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZGQ4MCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjM4JSIgc3RvcC1jb2xvcj0iI2ZmYmEwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgxJSIgc3RvcC1jb2xvcj0iI2ZmYmEwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNTljMTciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #ffdd80 0%, #ffba00 38%, #ffba00 81%, #e59c17 100%); /* FF3.6+ */
+    background: -ms-linear-gradient(top,  #ffdd80 0%,#ffba00 38%,#ffba00 81%,#e59c17 100%); /* IE10+ */
+    background: -o-linear-gradient(top,  #ffdd80 0%,#ffba00 38%,#ffba00 81%,#e59c17 100%); /* Opera 11.10+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffdd80), color-stop(38%,#ffba00), color-stop(81%,#ffba00), color-stop(100%,#e59c17)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffdd80 0%,#ffba00 38%,#ffba00 81%,#e59c17 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(top,  #ffdd80 0%,#ffba00 38%,#ffba00 81%,#e59c17 100%); /* W3C */    
+}
+.lynda-button.delete{
+    background-color: #8C0000;
+    border-color: #8C0000;
+}
+.lynda-button.secondary{
+    background-color: #999;
+    border-color: #999;
+}
+.lynda-button.inactive, .lynda-button.inactive:hover{
+    background: #999;
+    border-color: #999;
+    color: #FFF;
+    filter: none;
+}
+
+/* Buttons with captions */
+.lynda-button_caption_set{
+    text-align: center;
+}
+.lynda-button_caption_set a{
+    margin: 0 auto;
+}
+.lynda-button_caption_set p{
+    color: #666;
+    font-size: 11px;
+    margin: 12px auto 0;
+}
+/* IE 7 Fix (removes border from input elements) - Find in ui/styles/ie7.css */

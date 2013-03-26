@@ -1,0 +1,1443 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+    <meta name="robots" content="noindex"/>
+
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/960.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/css_buttons.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/common.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/jquery.fancybox-1.3.1.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/header.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/footer.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/tooltipStyle.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/jquery-modalpopup.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="css/jquery.css" />
+		<!--[if IE]>
+			<link rel="stylesheet" href="css/noscript.css?c-v=24739" type="text/css" charset="utf-8" />
+		<![endif]-->
+		<!--[if IE 6]>
+			<link rel="stylesheet" type="text/css" href="css/footer_ie6.css?c-v=24739" />
+			<link rel="stylesheet" type="text/css" href="css/ie6.css?c-v=24739" />
+		<![endif]-->
+		<!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="css/footer_ie7.css?c-v=24739" />
+			<link rel="stylesheet" type="text/css" href="css/ie7.css?c-v=24739" />
+		<![endif]-->
+		<script type="text/javascript">
+			// needed to check if the LoginConflictModal popup is displayed.
+			var isLoginConflited = 'False'
+		</script>
+		<script type="text/javascript">
+			var lynda = {
+				page: {},
+				feature: {},
+				baseUrl: 'http://www.lynda.com/',
+				isLoggedIn: false,
+                isBookmarksEnabled: false,
+                isQueueEnabled: false,
+				tags: {maxLength: 32},
+				isIMobileDevice: false,
+				urls:{
+					searchSuggestions: "http://www.lynda.com/home/sitesearchautocomplete.aspx"
+				}
+			};
+			
+			var searchSuggestions = function(selector, cssClass,pleasewaitIDName)
+			{
+				jQuery(selector).autocomplete(
+					parseSecureUrl(lynda.urls.searchSuggestions),
+					{
+						dataType: 'json',
+						delay: 900,
+						minChars: 3,
+						pleasewaitID: pleasewaitIDName,
+						scrollHeight: 400,
+						resultsClass: cssClass,
+						parse: function(data) {
+							var rows = new Array();
+							for (var i = 0; i < data.length; i++) {
+								data[i].Value = parseSecureUrl(data[i].Value);
+								rows.push({ data: data[i], value: data[i].Value, result: data[i].Key });
+							}
+							return rows;
+						},
+						formatItem: function(row, i, n) {
+							if (i == 1) {
+								jQuery('div.ac_results').each(function() {
+									if (jQuery(this).find('p.searchSugestions').length <= 0) {
+										jQuery(this).prepend('<p class="searchSugestions"><span>Suggestions</span></p>');
+									}
+									if (jQuery(this).find('p.searchClose').length <= 0) {
+										jQuery(this).append('<p class="searchClose"><a href="javascript:void(0);" onClick="javascript:jQuery(this).parent().parent().hide();">Close</a></p>');
+									}
+								});
+							}
+							jQuery('#' + pleasewaitIDName).hide();
+							return String.format('<a href="{0}">{1}</a>', row.Value, row.Key);
+						},
+						autoFill: false
+					}
+				).result(function(event, item) {
+					location.href = item.Value;
+				});
+			};
+
+			if(lynda.isIMobileDevice)
+				window.onscroll = scrollSiteFeedback;
+			function scrollSiteFeedback()
+			{
+				var position = window.innerHeight - jQuery('#section-sitefeedback').height();
+				jQuery('#section-sitefeedback').css({'width' : '105px', 'height' : '20px', 'opacity' : '0.6', 'top' : position + 'px' });
+			}
+		</script>
+		<script type="text/javascript" src="js/jquery-1.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.js"></script>
+		<script type="text/javascript" src="js/jquery.fancybox-1.3.1.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/superfish.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/ready2.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/Cookies.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/lynda.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/ShowWindow.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/jquery-modalpopup.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/popupWindow.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/jquery.autocomplete.all.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/plugin.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/plugindetect.js?c-v=24739"></script>
+		<script type="text/javascript" src="js/emailCapture.js?c-v=24739"></script>
+		
+		<script type="text/javascript" src="js/registration.js"></script>
+		
+		            			 
+            <script type="text/javascript">
+                var emailCaptureUrl = 'https://www.lynda.com/EmailCapture';
+                var emailCaptureCurrentPageUrl = "/trial/registration";
+            </script>
+
+		<!--[if IE 6]>
+			<script type="text/javascript">
+				$(document).ready(function($) {
+					$(".nav li.with-sub-menu").mouseenter(function() {
+						$("select").fadeOut();
+					});
+					$(".nav li.with-sub-menu").mouseleave(function() {
+						$("select").fadeIn();
+					});
+				});
+			</script>
+		<![endif]-->
+		
+    <meta name="description" content="Start a 7-day free trial at lynda.com. Trial includes unlimited access to a vast library of online video tutorials taught by teachers who are also professionals." />
+    <link rel="Stylesheet" href="css/validate.css?c-v=24739" type="text/css" charset="utf-8" />
+    <link rel="Stylesheet" href="css/registration.css?c-v=24739" type="text/css" charset="utf-8" />
+    <link rel="Stylesheet" href="css/css_buttons.css?c-v=24739" type="text/css" charset="utf-8" />
+    <script type="text/javascript" src="js/flyout.js?c-v=24739"></script>
+    <script type="text/javascript" src="js/tooltip.js?c-v=24739"></script>
+    <script type="text/javascript" src="js/jquery.select-to-autocomplete.js?c-v=24739" charset="utf-8"></script>
+    <script type="text/javascript" src="js/jquery.bgpos.js?c-v=24739" charset="utf-8"></script>
+    <script type="text/javascript" src="js/validate.js?c-v=24739" charset="utf-8"></script>
+    <script type="text/javascript" src="js/angular-1.0.1.min.js?c-v=24739" charset="utf-8"></script>
+    <script type="text/javascript" src="page/registration.js?c-v=24739" charset="utf-8"></script>
+    <script type="text/javascript">
+        lynda.page.registrationInfo = {"UserInfo":{"FirstName":"","LastName":"","Email":"","UserName":"","ReferralSource":"","NewsletterSelected":false},"SubscriptionId":1008,"PromotionCode":3246,"CurrentFields":[""]};
+        lynda.page.lpk35 = 3246;
+        lynda.page.mediaMind = { activityID: '239054' };
+        lynda.page._vis_opt_goal_conversion = 205;
+    </script>
+    <script type="text/javascript">
+    //VWO Code for integration only!
+    //Conversion goal for test 18
+        if(typeof(_vis_opt_top_initialize) == "function") {
+        // Code for Custom Goal: Goal #3
+         _vis_opt_goal_conversion(207);
+        // uncomment the following line to introduce a half second pause to ensure goal always registers with the server
+        // _vis_opt_pause(500);
+        }
+    </script>
+
+    <title>lynda.com library | Trial Subscription</title>
+
+		
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-28099555-1']);
+					
+					_gaq.push(['_setCustomVar', 4, 'UserSessionStatus', 'Unknown-Not-Logged-In', 2], ['_trackPageview'], ['_setDomainName', 'stage.lynda.com']);
+					(function () {
+						var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:'==document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+			
+	</head>
+	<body ontouchend="scrollSiteFeedback();" >
+	
+		<div id="section-sitefeedback"><a id="feedback-modal" href="https://www.lynda.com/user/feedback/modal">site feedback</a></div>
+		
+<div id="eyebrow">
+	<ul class="nav member-links">
+		<li class="become"><strong><a href="https://www.lynda.com/home/Registration/ConsumerRegistrationStep1.aspx?bnr=topbeamember_newsite">Become a member</a></strong></li>		
+		<li class="with-sub-menu">
+			<a href="https://www.lynda.com/membership">products</a>
+			<div class="sub hidden">
+				<ul class="sub-menu">
+					<li><a href="http://www.lynda.com/membership">individual memberships</a></li>
+					<li><a href="http://www.lynda.com/online-software-training/business-solutions.html">business solutions</a></li>
+					<li><a href="http://www.lynda.com/online-software-training/education-solutions.html">education solutions</a></li>
+					<li><a href="http://www.lynda.com/online-software-training/government-solutions.html">government solutions</a></li>
+					<li class="the-fold"><a href="http://www.lynda.com/mobile-access">mobile access</a></li>
+					<li><a href="http://www.lynda.com/giftsubscription/index.aspx">gift subscriptions</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="no-menu last">
+			<a href="http://www.lynda.com/newreleases.aspx">new releases</a>
+		</li>
+	</ul>
+	<div class="acct-links">
+	<ul class="nav"> 
+		<li class="with-sub-menu">
+			<a href="http://www.lynda.com/support/">support</a>
+			<div class="sub hidden">
+				<ul class="sub-menu">
+                    <li><a href="https://www.lynda.com/Business-E-learning-tutorials/How-to-use-lynda-com/77683-2.html">how to use lynda.com</a></li>
+					<li><a href="http://www.lynda.com/support/faq.aspx">frequently asked questions</a></li>
+					<li><a href="http://www.lynda.com/support/contact.aspx">contact us</a></li>
+					<li><a href="http://www.lynda.com/support/SystemRequirements.aspx">system requirements</a></li>
+					<li><a href="https://www.lynda.com/promo/activatekey">register activation key</a></li>
+				</ul>
+			</div>
+		</li>
+		
+						<li class="no-menu"><a href="planSelect" onClick="_gaq.push(['_trackEvent', 'trial', 'eyebrow', '/trial/registration'])">free trial</a></li>
+					
+					<li class="no-menu"><a href="https://www.lynda.com/home/Registration/ConsumerRegistrationStep1.aspx?bnr=topsubbtn_newsite">subscribe</a></li>
+					<li class="no-menu">
+						<a href="https://www.lynda.com/home/registration/RenewalStep1.aspx" class="reactivate">reactivate</a>
+					</li>
+					<li class="logout last">
+						<a href="https://www.lynda.com/user/login/modal" id="login-modal"><strong>log in</strong></a>
+					</li>
+				
+	</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript" src="refreshEyebrowMenu.js?c-v=24739"></script>
+<script type="text/javascript">
+	// Initialize the helper
+	var RefreshMenuHelper = new lynda.page.RefreshEyebrowMenuHelper({
+		playlistGet: "http://www.lynda.com/Playlist/Get",
+		playlistGetItems: "http://www.lynda.com/Playlist/{0}/GetItems",
+		findCourse: "http://www.lynda.com/tutorial/0",
+		playlistSelect: "http://www.lynda.com/Playlist?playlistId={0}",
+		playlistAll: "http://www.lynda.com/Playlist"
+	});
+</script>
+
+<div id="orng-navbar">
+	<div class="curve">
+		<div id="logo"><a href="http://www.lynda.com/">lynda.com</a></div>
+		<div id="search">
+			<div class="waitwheel" id="waitwheel_header"></div>
+			<form action="http://www.lynda.com/search" method="get" id="Form1" name="btmsrch">
+				<input type="text" class="srch-box-top site-search" id="srchbox" name="q" placeholder="What would you like to learn?" />
+				<input type="image" src="images/btn_search_54x18.gif" class="top-srch-btn" onclick="return validateSearchBox(jQuery('#srchbox'));"/>
+			</form>
+			<script type="text/javascript">
+				if(lynda&&lynda.baseUrl)
+				{
+					var url=jQuery('div#logo>a').attr('href'); 
+					if(url)
+						lynda.baseUrl=url;
+				}
+				jQuery(document).ready(function() {
+					searchSuggestions("input.srch-box-top","ac_results searchTop","waitwheel_header");
+				});
+			</script>
+		</div>
+           
+
+		<ul class="nav main-links">
+			<li class="with-sub-menu first" id="subject_menu">
+				
+
+<a href="http://www.lynda.com/subject/all"> subject</a>
+<div class="sub mega" style="display: none;" id="subjectMenuTab">
+    
+    <div class="mm-menu">
+        <div class="mm-head">
+            <ul class="sub-menu with-counts">
+                <li><a href="http://www.lynda.com/subject/all"><strong class="section-title">all
+                    subjects <span>view all</span></strong></a></li>
+            </ul>
+            <div class="mm-index">
+                <ul class="ltrs">
+                    <li><a class="subjHome" onclick="toggleSubjectLetter(this.innerHTML);return false;">home</a></li>
+                    <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">#</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">A</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">B</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">C</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">D</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">E</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">F</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">G</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">H</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">I</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">K</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">L</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">M</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">N</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">O</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">P</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">R</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">S</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">T</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">U</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li><li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>
+                </ul>
+            </div>
+            <div class="clear">
+                &nbsp;</div>
+        </div>
+        <div class="mm-data cols_2" id="subjectMenuItems">
+            <ul class="sub-menu with-counts lhome"><li><a href="/3D-Animation-training-tutorials/1-0.html">3D + Animation<span> (158)</span></a></li><li><a href="/Audio-training-tutorials/20-0.html">Audio<span> (76)</span></a></li><li><a href="/Business-training-tutorials/29-0.html">Business<span> (352)</span></a></li><li><a href="/Design-training-tutorials/40-0.html">Design<span> (267)</span></a></li><li><a href="/Developer-training-tutorials/50-0.html">Developer<span> (212)</span></a></li></ul><ul class="sub-menu with-counts lhome"><li><a href="/Documentaries-training-tutorials/1459-0.html">Documentaries<span> (45)</span></a></li><li><a href="/Photography-training-tutorials/70-0.html">Photography<span> (228)</span></a></li><li><a href="/Video-training-tutorials/78-0.html">Video<span> (252)</span></a></li><li><a href="/Web-training-tutorials/88-0.html">Web<span> (409)</span></a></li></ul>
+
+            <ul class="sub-menu with-counts l_"><li><a href="/3D-Animation-training-tutorials/1-0.html">3D + Animation<span> (158)</span></a></li></ul>
+            <ul class="sub-menu with-counts lA"><li><a href="/Accessibility-training-tutorials/1286-0.html">Accessibility<span> (2)</span></a></li><li><a href="/Accounting-Finance-training-tutorials/30-0.html">Accounting<span> (6)</span></a></li><li><a href="/Acoustics-training-tutorials/1287-0.html">Acoustics<span> (1)</span></a></li><li><a href="/Animation-training-tutorials/1288-0.html">Animation<span> (16)</span></a></li><li><a href="/Architecture-training-tutorials/2-0.html">Architecture<span> (17)</span></a></li><li><a href="/Audio-training-tutorials/20-0.html">Audio<span> (76)</span></a></li></ul><ul class="sub-menu with-counts lA"><li><a href="/Audio-Effects-training-tutorials/1289-0.html">Audio Effects<span> (6)</span></a></li><li><a href="/Audio-Engineering-training-tutorials/1290-0.html">Audio Engineering<span> (1)</span></a></li><li><a href="/Audio-for-Video-training-tutorials/1291-0.html">Audio for Video<span> (5)</span></a></li><li><a href="/Foundations-of-Audio-training-tutorials/1102-0.html">Audio Foundations<span> (6)</span></a></li><li><a href="/Plug-Ins-training-tutorials/25-0.html">Audio Plug-Ins<span> (11)</span></a></li></ul>
+            <ul class="sub-menu with-counts lB"><li><a href="/Blogs-training-tutorials/1292-0.html">Blogs<span> (17)</span></a></li><li><a href="/Building-Information-Modeling-training-tutorials/1293-0.html">Building Information Modeling<span> (6)</span></a></li></ul><ul class="sub-menu with-counts lB"><li><a href="/Business-training-tutorials/29-0.html">Business<span> (352)</span></a></li><li><a href="/Business-Skills-training-tutorials/484-0.html">Business Skills<span> (31)</span></a></li></ul>
+            <ul class="sub-menu with-counts lD"><li><a href="/Data-Analysis-training-tutorials/1303-0.html">Data Analysis<span> (11)</span></a></li><li><a href="/Databases-training-tutorials/1458-0.html">Databases<span> (47)</span></a></li><li><a href="/Design-training-tutorials/40-0.html">Design<span> (267)</span></a></li><li><a href="/Design-Patterns-training-tutorials/1304-0.html">Design Patterns<span> (3)</span></a></li><li><a href="/Design-Techniques-training-tutorials/1305-0.html">Design Techniques<span> (8)</span></a></li><li><a href="/Desktop-Apps-training-tutorials/1306-0.html">Desktop Apps<span> (13)</span></a></li><li><a href="/Developer-training-tutorials/50-0.html">Developer<span> (212)</span></a></li></ul><ul class="sub-menu with-counts lD"><li><a href="/DAW-training-tutorials/21-0.html">Digital Audio Workstations (DAWs)<span> (22)</span></a></li><li><a href="/Digital-Painting-training-tutorials/1307-0.html">Digital Painting<span> (16)</span></a></li><li><a href="/Digital-Publishing-training-tutorials/1210-0.html">Digital Publishing<span> (15)</span></a></li><li><a href="/Documentaries-training-tutorials/1459-0.html">Documentaries<span> (45)</span></a></li><li><a href="/DSLR-Video-training-tutorials/1460-0.html">DSLR Video<span> (4)</span></a></li><li><a href="/DVD-Authoring-training-tutorials/81-0.html">DVD Authoring<span> (10)</span></a></li></ul>
+            <ul class="sub-menu with-counts lP"><li><a href="/Layout-training-tutorials/44-0.html">Page Layout<span> (20)</span></a></li><li><a href="/Particles-training-tutorials/1342-0.html">Particles<span> (3)</span></a></li><li><a href="/PDF-training-tutorials/1343-0.html">PDF<span> (16)</span></a></li><li><a href="/Photo-Management-training-tutorials/73-0.html">Photo Management<span> (13)</span></a></li><li><a href="/Photography-training-tutorials/70-0.html">Photography<span> (228)</span></a></li><li><a href="/Foundations-of-Photography-training-tutorials/1113-0.html">Photography Foundations<span> (7)</span></a></li><li><a href="/Podcasting-training-tutorials/1344-0.html">Podcasting<span> (2)</span></a></li><li><a href="/Portraits-training-tutorials/1345-0.html">Portraits<span> (21)</span></a></li><li><a href="/Post-Production-training-tutorials/1466-0.html">Post Production<span> (5)</span></a></li><li><a href="/Presentations-training-tutorials/37-0.html">Presentations<span> (29)</span></a></li><li><a href="/Previsualization-training-tutorials/1348-0.html">Previsualization<span> (2)</span></a></li></ul><ul class="sub-menu with-counts lP"><li><a href="/Print-Design-training-tutorials/1349-0.html">Print Design<span> (12)</span></a></li><li><a href="/Print-Prepress-training-tutorials/45-0.html">Print Production<span> (8)</span></a></li><li><a href="/Printing-Sharing-training-tutorials/1115-0.html">Printing Photos<span> (9)</span></a></li><li><a href="/Product-Design-training-tutorials/1350-0.html">Product Design<span> (3)</span></a></li><li><a href="/Productivity-training-tutorials/38-0.html">Productivity<span> (43)</span></a></li><li><a href="/Programming-Foundations-training-tutorials/1351-0.html">Programming Foundations<span> (4)</span></a></li><li><a href="/Programming-Languages-training-tutorials/1467-0.html">Programming Languages<span> (50)</span></a></li><li><a href="/Project-Management-training-tutorials/39-0.html">Project Management<span> (7)</span></a></li><li><a href="/Projects-training-tutorials/1468-0.html">Projects<span> (75)</span></a></li><li><a href="/Prototyping-training-tutorials/95-0.html">Prototyping<span> (16)</span></a></li></ul>
+            <ul class="sub-menu with-counts lV"><li><a href="/Video-training-tutorials/78-0.html">Video<span> (252)</span></a></li><li><a href="/Video-Cameras-training-tutorials/1371-0.html">Video Cameras<span> (1)</span></a></li><li><a href="/Compression-training-tutorials/80-0.html">Video Delivery<span> (6)</span></a></li><li><a href="/Editing-training-tutorials/82-0.html">Video Editing<span> (40)</span></a></li></ul><ul class="sub-menu with-counts lV"><li><a href="/Video-Foundations-training-tutorials/1372-0.html">Video Foundations<span> (2)</span></a></li><li><a href="/Shooting-Video-training-tutorials/1179-0.html">Video Pre-Production<span> (2)</span></a></li><li><a href="/Virtual-Instruments-training-tutorials/1373-0.html">Virtual Instruments<span> (2)</span></a></li><li><a href="/Visual-Effects-training-tutorials/1470-0.html">Visual Effects<span> (55)</span></a></li></ul>
+            <ul class="sub-menu with-counts lW"><li><a href="/Web-training-tutorials/88-0.html">Web<span> (409)</span></a></li><li><a href="/Web-Analytics-training-tutorials/1374-0.html">Web Analytics<span> (1)</span></a></li><li><a href="/Web-Conferencing-training-tutorials/1375-0.html">Web Conferencing<span> (3)</span></a></li><li><a href="/Web-Design-training-tutorials/1376-0.html">Web Design<span> (101)</span></a></li><li><a href="/Web-Development-training-tutorials/1471-0.html">Web Development<span> (101)</span></a></li><li><a href="/Web-Fonts-training-tutorials/1378-0.html">Web Fonts<span> (4)</span></a></li></ul><ul class="sub-menu with-counts lW"><li><a href="/Web-Foundations-training-tutorials/1379-0.html">Web Foundations<span> (14)</span></a></li><li><a href="/Graphics-Animation-training-tutorials/91-0.html">Web Graphics<span> (28)</span></a></li><li><a href="/Web-Video-training-tutorials/1380-0.html">Web Video<span> (8)</span></a></li><li><a href="/Wireframing-training-tutorials/1381-0.html">Wireframing<span> (2)</span></a></li><li><a href="/Word-Processing-training-tutorials/1382-0.html">Word Processing<span> (21)</span></a></li></ul>
+            <ul class="sub-menu with-counts lC"><li><a href="/CAD-training-tutorials/3-0.html">CAD<span> (35)</span></a></li><li><a href="/Camera-Raw-training-tutorials/1294-0.html">Camera Raw<span> (4)</span></a></li><li><a href="/Cameras-Gear-training-tutorials/71-0.html">Cameras + Gear<span> (22)</span></a></li><li><a href="/Career-Development-training-tutorials/1295-0.html">Career Development<span> (13)</span></a></li><li><a href="/Character-Animation-training-tutorials/1454-0.html">Character Animation<span> (23)</span></a></li><li><a href="/Charts-Graphs-training-tutorials/1296-0.html">Charts + Graphs<span> (14)</span></a></li><li><a href="/Cloud-Computing-training-tutorials/1385-0.html">Cloud Computing<span> (12)</span></a></li><li><a href="/CMS-Blogs-training-tutorials/89-0.html">CMS<span> (58)</span></a></li><li><a href="/Collaboration-training-tutorials/31-0.html">Collaboration<span> (28)</span></a></li></ul><ul class="sub-menu with-counts lC"><li><a href="/Color-training-tutorials/41-0.html">Color<span> (10)</span></a></li><li><a href="/Color-Correction-training-tutorials/1298-0.html">Color Correction<span> (8)</span></a></li><li><a href="/Compositing-training-tutorials/1457-0.html">Compositing<span> (18)</span></a></li><li><a href="/Computer-Skills-Mac-training-tutorials/1300-0.html">Computer Skills (Mac)<span> (10)</span></a></li><li><a href="/Computer-Skills-Windows-training-tutorials/1301-0.html">Computer Skills (Windows)<span> (12)</span></a></li><li><a href="/Content-Strategy-training-tutorials/1302-0.html">Content Strategy<span> (4)</span></a></li><li><a href="/Creative-Inspirations-training-tutorials/100-0.html">Creative Inspirations<span> (30)</span></a></li><li><a href="/Creative-Spark-training-tutorials/1540-0.html">Creative Spark<span> (4)</span></a></li></ul>
+            <ul class="sub-menu with-counts lH"><li><a href="/High-Dynamic-Range-HDR-training-tutorials/1321-0.html">High Dynamic Range (HDR)<span> (1)</span></a></li><li><a href="/Hillman-Curtis-Artist-Series-training-tutorials/101-0.html">Hillman Curtis Artist Series<span> (1)</span></a></li></ul><ul class="sub-menu with-counts lH"><li><a href="/Home-Office-training-tutorials/61-0.html">Home + Small Office<span> (5)</span></a></li></ul>
+            <ul class="sub-menu with-counts lL"><li><a href="/Lighting-training-tutorials/1464-0.html">Lighting<span> (21)</span></a></li><li><a href="/Live-Performance-training-tutorials/1328-0.html">Live Performance<span> (1)</span></a></li></ul><ul class="sub-menu with-counts lL"><li><a href="/Logo-Design-training-tutorials/1329-0.html">Logo Design<span> (2)</span></a></li><li><a href="/lynda-com-Presents-training-tutorials/102-0.html">lynda.com Presents<span> (2)</span></a></li></ul>
+            <ul class="sub-menu with-counts lS"><li><a href="/Santa-Barbara-Film-Festival-training-tutorials/103-0.html">Santa Barbara Film Festival<span> (12)</span></a></li><li><a href="/Scanning-training-tutorials/1360-0.html">Scanning<span> (4)</span></a></li><li><a href="/Screenwriting-training-tutorials/1361-0.html">Screenwriting<span> (4)</span></a></li><li><a href="/SEO-training-tutorials/1469-0.html">SEO<span> (13)</span></a></li><li><a href="/Servers-training-tutorials/1363-0.html">Servers<span> (22)</span></a></li><li><a href="/Sharing-Photos-training-tutorials/1364-0.html">Sharing Photos<span> (18)</span></a></li></ul><ul class="sub-menu with-counts lS"><li><a href="/Shooting-Video-training-tutorials/1365-0.html">Shooting Video<span> (7)</span></a></li><li><a href="/Social-Media-Marketing-training-tutorials/1366-0.html">Social Media Marketing<span> (7)</span></a></li><li><a href="/Social-Networking-training-tutorials/67-0.html">Social Networks<span> (11)</span></a></li><li><a href="/Spreadsheets-training-tutorials/1367-0.html">Spreadsheets<span> (24)</span></a></li><li><a href="/Start-to-Finish-training-tutorials/104-0.html">Start to Finish<span> (6)</span></a></li><li><a href="/Studio-Setup-training-tutorials/1368-0.html">Studio Setup<span> (1)</span></a></li></ul>
+            <ul class="sub-menu with-counts lG"><li><a href="/Game-Design-training-tutorials/1461-0.html">Game Design<span> (9)</span></a></li></ul><ul class="sub-menu with-counts lG"><li><a href="/Games-training-tutorials/1320-0.html">Games<span> (7)</span></a></li></ul>
+            <ul class="sub-menu with-counts lM"><li><a href="/Masking-Compositing-training-tutorials/1330-0.html">Masking + Compositing<span> (15)</span></a></li><li><a href="/Mastering-training-tutorials/1331-0.html">Mastering<span> (12)</span></a></li><li><a href="/Materials-training-tutorials/1332-0.html">Materials<span> (19)</span></a></li><li><a href="/Microphones-training-tutorials/1333-0.html">Microphones<span> (2)</span></a></li><li><a href="/Mixing-Mastering-training-tutorials/22-0.html">Mixing<span> (18)</span></a></li><li><a href="/Mobile-training-tutorials/55-0.html">Mobile Apps<span> (30)</span></a></li><li><a href="/Mobile-Web-training-tutorials/1465-0.html">Mobile Web<span> (10)</span></a></li></ul><ul class="sub-menu with-counts lM"><li><a href="/Modeling-training-tutorials/7-0.html">Modeling<span> (39)</span></a></li><li><a href="/Motion-Graphics-training-tutorials/84-0.html">Motion Graphics<span> (54)</span></a></li><li><a href="/Music-Composition-training-tutorials/1337-0.html">Music Composition<span> (5)</span></a></li><li><a href="/Music-Editing-training-tutorials/1338-0.html">Music Editing<span> (2)</span></a></li><li><a href="/Notation-training-tutorials/481-0.html">Music Notation<span> (3)</span></a></li><li><a href="/Music-Production-training-tutorials/23-0.html">Music Production<span> (19)</span></a></li></ul>
+            <ul class="sub-menu with-counts lR"><li><a href="/Recording-training-tutorials/26-0.html">Recording Techniques<span> (4)</span></a></li><li><a href="/Remixing-training-tutorials/1356-0.html">Remixing<span> (3)</span></a></li><li><a href="/D-Rendering-training-tutorials/8-0.html">Rendering<span> (27)</span></a></li></ul><ul class="sub-menu with-counts lR"><li><a href="/Responsive-Design-training-tutorials/1357-0.html">Responsive Design<span> (10)</span></a></li><li><a href="/Restoration-training-tutorials/1358-0.html">Restoration<span> (2)</span></a></li><li><a href="/Retouching-training-tutorials/1359-0.html">Retouching<span> (17)</span></a></li></ul>
+            <ul class="sub-menu with-counts lT"><li><a href="/Textures-Materials-training-tutorials/9-0.html">Textures<span> (22)</span></a></li><li><a href="/Time-Management-training-tutorials/1369-0.html">Time Management<span> (6)</span></a></li></ul><ul class="sub-menu with-counts lT"><li><a href="/Tuning-training-tutorials/1370-0.html">Tuning<span> (2)</span></a></li><li><a href="/Typography-training-tutorials/47-0.html">Typography<span> (16)</span></a></li></ul>
+            <ul class="sub-menu with-counts lF"><li><a href="/Scoring-Composition-training-tutorials/27-0.html">Film Scoring<span> (3)</span></a></li><li><a href="/Filmmaking-training-tutorials/1314-0.html">Filmmaking<span> (14)</span></a></li><li><a href="/Finance-training-tutorials/1315-0.html">Finance<span> (9)</span></a></li></ul><ul class="sub-menu with-counts lF"><li><a href="/Flash-Photography-training-tutorials/1316-0.html">Flash Photography<span> (5)</span></a></li><li><a href="/Forms-training-tutorials/1317-0.html">Forms<span> (10)</span></a></li></ul>
+            <ul class="sub-menu with-counts lI"><li><a href="/Digital-Illustration-training-tutorials/42-0.html">Illustration<span> (15)</span></a></li><li><a href="/Infographics-training-tutorials/1462-0.html">Infographics<span> (6)</span></a></li><li><a href="/Interactive-training-tutorials/93-0.html">Interaction Design<span> (18)</span></a></li></ul><ul class="sub-menu with-counts lI"><li><a href="/iPad-Music-Production-training-tutorials/1324-0.html">iPad Music Production<span> (2)</span></a></li><li><a href="/iPhone-iPod-iPad-training-tutorials/1463-0.html">iPhone, iPod, iPad<span> (8)</span></a></li></ul>
+            <ul class="sub-menu with-counts lE"><li><a href="/eBooks-training-tutorials/1310-0.html">Ebooks<span> (5)</span></a></li><li><a href="/E-Commerce-training-tutorials/1311-0.html">Ecommerce<span> (10)</span></a></li><li><a href="/E-learning-training-tutorials/33-0.html">E-learning<span> (17)</span></a></li></ul><ul class="sub-menu with-counts lE"><li><a href="/Email-training-tutorials/1312-0.html">Email<span> (17)</span></a></li><li><a href="/Email-Marketing-training-tutorials/1313-0.html">Email Marketing<span> (3)</span></a></li></ul>
+            <ul class="sub-menu with-counts lN"><li><a href="/Night-Low-Light-training-tutorials/1339-0.html">Night + Low Light<span> (2)</span></a></li></ul><ul class="sub-menu with-counts lN"><li><a href="/Note-Taking-training-tutorials/1340-0.html">Note Taking<span> (5)</span></a></li></ul>
+            <ul class="sub-menu with-counts lO"><li><a href="/Online-Marketing-SEO-training-tutorials/35-0.html">Online Marketing<span> (21)</span></a></li></ul><ul class="sub-menu with-counts lO"><li><a href="/Operating-Systems-training-tutorials/36-0.html">Operating Systems<span> (21)</span></a></li></ul>
+            <ul class="sub-menu with-counts lK"><li><a href="/Keying-Mattes-training-tutorials/83-0.html">Keying<span> (4)</span></a></li></ul>
+            <ul class="sub-menu with-counts lU"><li><a href="/User-Experience-training-tutorials/97-0.html">User Experience<span> (15)</span></a></li></ul>
+            
+            <br class="clear" />
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        toggleSubjectLetter('home');
+    });
+    function toggleSubjectLetter(letter) {
+        jQuery('div#subjectMenuItems')
+								.children('ul').hide()
+								.parent().children('ul.l' + (letter == '#' ? '_' : letter))
+								.show();
+        jQuery('div#subjectMenuTab ul.ltrs > li > a').each(function () {
+            var e = jQuery(this);
+            if (e.html() === letter)
+                e.parent().addClass('cur').siblings('li.cur').removeClass('cur');
+        });
+    }
+</script>
+
+			</li>
+			<li id="test" class="with-sub-menu">
+				<a href="http://www.lynda.com/software/all">software</a>
+				<div class="sub mega" style="display: none;" id="softwareMenuTab">
+					<script type="text/javascript">				    
+						function toggleMenuLetter(letter)
+						{
+							jQuery('div#softwareMenuItems > ul').hide();
+							jQuery('div#softwareMenuItems > ul.u'+(letter=='#'?'_':letter)).show();
+
+							jQuery('div#softwareMenuTab ul.ltrs > li > a').each(function()
+							{
+								var e=jQuery(this);
+								if(e.html()===letter)
+									e.parent().addClass('cur').siblings('li.cur').removeClass('cur');
+							});
+						}
+						jQuery.ajax({ url: parseSecureUrl('https://www.lynda.com/page/headermenu'), dataType: 'html', 
+						    success: function (data) {
+						    if (data.indexOf("<html") === -1) {
+						        jQuery('div#softwareMenuTab').html(data);
+						        toggleMenuLetter('A');
+						    }
+						} 
+						});
+					</script>
+				</div>
+			</li>  
+            <li id="authorTest" class="with-sub-menu">
+                <a href="http://www.lynda.com/Home/Authors.aspx">author</a>
+                <div class="sub mega" style="display: none;" id="authorMenuTab">
+					<script type="text/javascript">
+						function toggleAuthorMenuLetter(letter)
+						{
+						    jQuery('div#authorMenuItems > ul').hide();
+						    jQuery('div#authorMenuItems > ul.u' + (letter == '#' ? '_' : letter)).show();
+							jQuery('div#authorMenuTab ul.ltrs > li > a').each(function()
+							{
+								var e=jQuery(this);
+								if(e.html()===letter)
+									e.parent().addClass('cur').siblings('li.cur').removeClass('cur');
+							});
+						}
+						jQuery.ajax({ url: parseSecureUrl('https://www.lynda.com/page/headerauthormenu'), dataType: 'html',
+						    success: 
+						        function(data) {
+						            if (data.indexOf("<html") === -1) {
+						                jQuery('div#authorMenuTab').html(data);
+						                toggleAuthorMenuLetter('A');
+						            }
+						        } });
+					</script>
+				</div>
+            </li>
+            <li id="queueMenu" class="with-sub-menu" style="display:none"> 
+                <a href="http://www.lynda.com/CourseHistory">my courses</a> 
+			    <div class="sub hidden">  
+			    </div> 
+	        </li>
+			
+		</ul> 
+	</div>
+</div>
+<!-- header: 3/14/2013 8:17:20 PM -->
+<div class="clearfix">&nbsp;</div>
+<div id="ng:app" ng-app >
+    <div id="content" class="container_16" ng-controller="lynda.page.userController">
+        <div ng-controller="lynda.page.stateController" id="state-controller"></div>
+        <div class="grid_16" id="breadcrumbs">
+            <a href="/" title="lynda.com">lynda.com</a> &raquo; <a href="planSelect" title="free trial">7-day trial</a> &raquo; <span id="current_breadcrumb">set up future billing</span>
+        </div>
+        <div id="status_bar" class="grid_16 alpha omega billingStatus">&nbsp;</div>
+
+        
+
+        <div class="issueAlert"></div>
+
+        <form id="billingForm" class="grid_11 well bottom-well billingState slide" action="registrationcomplete">
+            <div class="title"><h1>Set up future billing</h1></div>
+            <div class="padded-content">
+                
+                <div class="pricingOptions" ng-cloak ng-controller="lynda.page.pricingController">
+                <h2>Choose the Annual plan to save $<span class="annualSavings"></span></h2>	
+                    <div class="pricingOptionFrequencies">
+                    	<label>MONTHLY</label>
+                    	<label>ANNUAL</label>
+                    </div>
+                    <span ng-repeat="plan in plans">
+                        <label class="pill active monthlyPill" ng-class="active" for="monthlyOption" ng-click="">
+                            <input type="radio" name="selectedPlan" checked id="monthlyOption" value="Monthly" ng-model="user.selectedPlan"> 
+                            <span class="billingTerms exist">
+                            	<p><span class="price"><span class="planPriceMonthly"></span></span>/month</p>
+                            	<p>billed monthly, with<br>no long-term commitment</p>
+                        	</span>
+                        </label>
+                    </span>
+                    <span ng-repeat="plan in plans">
+                        <label class="pill annualPill annual" for="annualOption">
+                            <input type="radio" name="selectedPlan" id="annualOption" value="Annual" ng-model="user.selectedPlan"> 
+                            <span class="billingTerms exist">
+                            	<p>
+                            		<span class="price"><span class="planPriceAnnualMonthly"></span></span>/month
+                            	</p>
+                            	<p>
+                            		billed in one annual<br>payment of <span class="planPriceAnnual"></span>
+                            	</p>
+                            </span>
+                            <label for="annualOption" class="pillSavings exist" ng-class="{exist: plan.savings}">2 months free</label>
+                        </label>
+                        
+                    </span>
+                </div>
+                <span class="well-link-top">
+                    <a class="has_tooltip" onMouseOver="_gaq.push(['_trackEvent', 'Trial', 'It\'s Free Tooltip', '/trial/registration']);">It's free, why do you need this?</a>
+                    <span class="tooltip">
+                        <p>We use your credit card information to verify the free trial is only used once per person. We may temporarily post a $1.00 verification fee to your account.</p>
+                        <br/>
+                        <p>Also by saving your billing information, you&apos;ll enjoy continuous access to lynda.com at the end of your trial if you decide to continue your membership.</p>
+                    </span>
+                </span>
+                <h2>Future billing information</h2>
+                <input type="hidden" name="PromoId" value="3246" />
+                <input type="hidden" id="hiddenEmail" name="email" value="" />
+                <input id="subid2" type="hidden" name="subscriptionId" value="{{user.selectedPlan.subscriptionId}}" />
+                        
+                <div>
+                    <img src='../images/icon_cc_190x32.png' class='creditCardLogos' />
+                </div>
+                <div class="grid_3 alpha columnOne">
+                    <label for="billingName">name on card:</label>
+                </div>
+                <div class="grid_8 omega">
+                    <input type="text" name="billingName" maxlength="50" class='lynda-validate grid_3 alpha' data-type="required" data-notify='["label[for=billingName]"]' ng-model="user.billingName"/>
+                    <span class="lynda-validate-message"></span>
+                </div>
+                <div class="grid_3 alpha columnOne">
+                    <label for="cardNumber">card number:</label>
+                </div>
+                <div class="grid_8 omega">
+                    <input type="text" maxlength="255" class='lynda-validate grid_4 alpha' data-notify='["label[for=cardNumber]"]' data-type="creditCard" name="cardNumber" ng-model="user.cardNumber"/>
+                    <span class="lynda-validate-message"></span>
+                </div>
+                <div class="grid_3 alpha columnOne">
+                    <label for="expMonth">expiration:</label>
+                </div>
+                <div class="grid_8 omega">
+                    <select id="expMonth" name="expMonth" ng-model="user.expirationMonth">
+                        
+                        <option value="1">01 - January</option>
+                        
+                        <option value="2">02 - February</option>
+                        
+                        <option value="3">03 - March</option>
+                        
+                        <option value="4">04 - April</option>
+                        
+                        <option value="5">05 - May</option>
+                        
+                        <option value="6">06 - June</option>
+                        
+                        <option value="7">07 - July</option>
+                        
+                        <option value="8">08 - August</option>
+                        
+                        <option value="9">09 - September</option>
+                        
+                        <option value="10">10 - October</option>
+                        
+                        <option value="11">11 - November</option>
+                        
+                        <option value="12">12 - December</option>
+                        
+                    </select>
+                    /
+                    <select id="expYear" name="expYear" ng-model="user.expirationYear">
+                        
+                        <option value="2013">2013</option>
+                        
+                        <option value="2014">2014</option>
+                        
+                        <option value="2015">2015</option>
+                        
+                        <option value="2016">2016</option>
+                        
+                        <option value="2017">2017</option>
+                        
+                        <option value="2018">2018</option>
+                        
+                        <option value="2019">2019</option>
+                        
+                        <option value="2020">2020</option>
+                        
+                        <option value="2021">2021</option>
+                        
+                        <option value="2022">2022</option>
+                        
+                        <option value="2023">2023</option>
+                        
+                        <option value="2024">2024</option>
+                        
+                        <option value="2025">2025</option>
+                        
+                        <option value="2026">2026</option>
+                        
+                        <option value="2027">2027</option>
+                        
+                        <option value="2028">2028</option>
+                        
+                        <option value="2029">2029</option>
+                        
+                        <option value="2030">2030</option>
+                        
+                        <option value="2031">2031</option>
+                        
+                        <option value="2032">2032</option>
+                        
+                        <option value="2033">2033</option>
+                        
+                        <option value="2034">2034</option>
+                        
+                        <option value="2035">2035</option>
+                        
+                        <option value="2036">2036</option>
+                        
+                        <option value="2037">2037</option>
+                        
+                        <option value="2038">2038</option>
+                        
+                    </select>
+                </div>
+                <div class="grid_3 alpha columnOne">
+                    <label for="securityCode">security code:</label>
+                </div>
+                <div class="grid_8 omega">
+                    <input type="text" id="securityCode" maxlength="255" class='lynda-validate grid_1 alpha' name="securityCode" data-notify='["label[for=securityCode]"]' data-type="securityCode" ng-model="user.securityCode"/>
+                                    &nbsp;
+                    <img src='../images/ccid_mc.png' id="ccid_mc" />
+                    &nbsp;
+                    <a href="#securityCodeTipContent" class="modal-link">
+                        <span>What's this?</span>
+                    </a>
+                    <span class="lynda-validate-message securityCode"></span>
+                </div>
+                <div class="grid_3 alpha columnOne">
+                    <label for="countryid">country:</label>
+                </div>
+                <div class="grid_8 omega">
+                    <select id="countrySelector" class="grid_2 alpha" id="country-selector" name="countryid" ng-model="user.country">
+                        
+                        <option value="8">Other</option>
+                        
+                        <option value="9">Afghanistan</option>
+                        
+                        <option value="10">Aland Islands</option>
+                        
+                        <option value="11">Albania</option>
+                        
+                        <option value="12">Algeria</option>
+                        
+                        <option value="13">American Samoa</option>
+                        
+                        <option value="14">Andorra</option>
+                        
+                        <option value="15">Angola</option>
+                        
+                        <option value="16">Anguilla</option>
+                        
+                        <option value="17">Antarctica</option>
+                        
+                        <option value="18">Antigua and Barbuda</option>
+                        
+                        <option value="19">Argentina</option>
+                        
+                        <option value="20">Armenia</option>
+                        
+                        <option value="21">Aruba</option>
+                        
+                        <option value="22">Australia</option>
+                        
+                        <option value="23">Austria</option>
+                        
+                        <option value="24">Azerbaijan</option>
+                        
+                        <option value="25">Bahamas</option>
+                        
+                        <option value="26">Bahrain</option>
+                        
+                        <option value="27">Bangladesh</option>
+                        
+                        <option value="28">Barbados</option>
+                        
+                        <option value="29">Belarus</option>
+                        
+                        <option value="30">Belgium</option>
+                        
+                        <option value="31">Belize</option>
+                        
+                        <option value="32">Benin</option>
+                        
+                        <option value="33">Bermuda</option>
+                        
+                        <option value="34">Bhutan</option>
+                        
+                        <option value="35">Bolivia</option>
+                        
+                        <option value="36">Bosnia and Herzegovina</option>
+                        
+                        <option value="37">Botswana</option>
+                        
+                        <option value="38">Bouvet Island</option>
+                        
+                        <option value="39">Brazil</option>
+                        
+                        <option value="40">British Indian Ocean Territory</option>
+                        
+                        <option value="41">Brunei Darussalam</option>
+                        
+                        <option value="42">Bulgaria</option>
+                        
+                        <option value="43">Burkina Faso</option>
+                        
+                        <option value="44">Burundi</option>
+                        
+                        <option value="45">Cambodia</option>
+                        
+                        <option value="46">Cameroon</option>
+                        
+                        <option value="47">Canada</option>
+                        
+                        <option value="48">Cape Verde</option>
+                        
+                        <option value="49">Cayman Islands</option>
+                        
+                        <option value="50">Central African Republic</option>
+                        
+                        <option value="51">Chad</option>
+                        
+                        <option value="52">Chile</option>
+                        
+                        <option value="53">China</option>
+                        
+                        <option value="54">Christmas Island</option>
+                        
+                        <option value="55">Cocos (Keeling) Islands</option>
+                        
+                        <option value="56">Colombia</option>
+                        
+                        <option value="57">Comoros</option>
+                        
+                        <option value="58">Congo</option>
+                        
+                        <option value="59">Congo, The Democratic Republic of the</option>
+                        
+                        <option value="60">Cook Islands</option>
+                        
+                        <option value="61">Costa Rica</option>
+                        
+                        <option value="62">Côte d'Ivoire</option>
+                        
+                        <option value="63">Croatia</option>
+                        
+                        <option value="65">Cyprus</option>
+                        
+                        <option value="66">Czech Republic</option>
+                        
+                        <option value="67">Denmark</option>
+                        
+                        <option value="68">Djibouti</option>
+                        
+                        <option value="69">Dominica</option>
+                        
+                        <option value="70">Dominican Republic</option>
+                        
+                        <option value="71">Ecuador</option>
+                        
+                        <option value="72">Egypt</option>
+                        
+                        <option value="73">El Salvador</option>
+                        
+                        <option value="74">Equatorial Guinea</option>
+                        
+                        <option value="75">Eritrea</option>
+                        
+                        <option value="76">Estonia</option>
+                        
+                        <option value="77">Ethiopia</option>
+                        
+                        <option value="78">Falkland Islands (Malvinas)</option>
+                        
+                        <option value="79">Faroe Islands</option>
+                        
+                        <option value="80">Fiji</option>
+                        
+                        <option value="81">Finland</option>
+                        
+                        <option value="82">France</option>
+                        
+                        <option value="83">French Guiana</option>
+                        
+                        <option value="84">French Polynesia</option>
+                        
+                        <option value="85">French Southern Territories</option>
+                        
+                        <option value="86">Gabon</option>
+                        
+                        <option value="87">Gambia</option>
+                        
+                        <option value="88">Georgia</option>
+                        
+                        <option value="89">Germany</option>
+                        
+                        <option value="90">Ghana</option>
+                        
+                        <option value="91">Gibraltar</option>
+                        
+                        <option value="92">Greece</option>
+                        
+                        <option value="93">Greenland</option>
+                        
+                        <option value="94">Grenada</option>
+                        
+                        <option value="95">Guadeloupe</option>
+                        
+                        <option value="96">Guam</option>
+                        
+                        <option value="97">Guatemala</option>
+                        
+                        <option value="98">Guernsey</option>
+                        
+                        <option value="99">Guinea</option>
+                        
+                        <option value="100">Guinea-Bissau</option>
+                        
+                        <option value="101">Guyana</option>
+                        
+                        <option value="102">Haiti</option>
+                        
+                        <option value="103">Heard Island and McDonald Islands</option>
+                        
+                        <option value="104">Holy See (Vatican City State)</option>
+                        
+                        <option value="105">Honduras</option>
+                        
+                        <option value="106">Hong Kong</option>
+                        
+                        <option value="107">Hungary</option>
+                        
+                        <option value="108">Iceland</option>
+                        
+                        <option value="109">India</option>
+                        
+                        <option value="110">Indonesia</option>
+                        
+                        <option value="112">Iraq</option>
+                        
+                        <option value="113">Ireland</option>
+                        
+                        <option value="114">Isle of Man</option>
+                        
+                        <option value="115">Israel</option>
+                        
+                        <option value="116">Italy</option>
+                        
+                        <option value="117">Jamaica</option>
+                        
+                        <option value="118">Japan</option>
+                        
+                        <option value="119">Jersey</option>
+                        
+                        <option value="120">Jordan</option>
+                        
+                        <option value="121">Kazakhstan</option>
+                        
+                        <option value="122">Kenya</option>
+                        
+                        <option value="123">Kiribati</option>
+                        
+                        <option value="125">Korea, Republic of</option>
+                        
+                        <option value="126">Kuwait</option>
+                        
+                        <option value="127">Kyrgyzstan</option>
+                        
+                        <option value="128">Lao People's Democratic Republic</option>
+                        
+                        <option value="129">Latvia</option>
+                        
+                        <option value="130">Lebanon</option>
+                        
+                        <option value="131">Lesotho</option>
+                        
+                        <option value="132">Liberia</option>
+                        
+                        <option value="133">Libyan Arab Jamahiriya</option>
+                        
+                        <option value="134">Liechtenstein</option>
+                        
+                        <option value="135">Lithuania</option>
+                        
+                        <option value="136">Luxembourg</option>
+                        
+                        <option value="137">Macao</option>
+                        
+                        <option value="138">Macedonia</option>
+                        
+                        <option value="139">Madagascar</option>
+                        
+                        <option value="140">Malawi</option>
+                        
+                        <option value="141">Malaysia</option>
+                        
+                        <option value="142">Maldives</option>
+                        
+                        <option value="143">Mali</option>
+                        
+                        <option value="144">Malta</option>
+                        
+                        <option value="145">Marshall Islands</option>
+                        
+                        <option value="146">Martinique</option>
+                        
+                        <option value="147">Mauritania</option>
+                        
+                        <option value="148">Mauritius</option>
+                        
+                        <option value="149">Mayotte</option>
+                        
+                        <option value="150">Mexico</option>
+                        
+                        <option value="151">Micronesia, Federated States of</option>
+                        
+                        <option value="152">Moldova</option>
+                        
+                        <option value="153">Monaco</option>
+                        
+                        <option value="154">Mongolia</option>
+                        
+                        <option value="155">Montenegro</option>
+                        
+                        <option value="156">Montserrat</option>
+                        
+                        <option value="157">Morocco</option>
+                        
+                        <option value="158">Mozambique</option>
+                        
+                        <option value="159">Myanmar</option>
+                        
+                        <option value="160">Namibia</option>
+                        
+                        <option value="161">Nauru</option>
+                        
+                        <option value="162">Nepal</option>
+                        
+                        <option value="163">Netherlands</option>
+                        
+                        <option value="164">Netherlands Antilles</option>
+                        
+                        <option value="165">New Caledonia</option>
+                        
+                        <option value="166">New Zealand</option>
+                        
+                        <option value="167">Nicaragua</option>
+                        
+                        <option value="168">Niger</option>
+                        
+                        <option value="169">Nigeria</option>
+                        
+                        <option value="170">Niue</option>
+                        
+                        <option value="171">Norfolk Island</option>
+                        
+                        <option value="172">Northern Mariana Islands</option>
+                        
+                        <option value="173">Norway</option>
+                        
+                        <option value="174">Oman</option>
+                        
+                        <option value="175">Pakistan</option>
+                        
+                        <option value="176">Palau</option>
+                        
+                        <option value="177">Palestinian Territory, Occupied</option>
+                        
+                        <option value="178">Panama</option>
+                        
+                        <option value="179">Papua New Guinea</option>
+                        
+                        <option value="180">Paraguay</option>
+                        
+                        <option value="181">Peru</option>
+                        
+                        <option value="182">Philippines</option>
+                        
+                        <option value="183">Pitcairn</option>
+                        
+                        <option value="184">Poland</option>
+                        
+                        <option value="185">Portugal</option>
+                        
+                        <option value="186">Puerto Rico</option>
+                        
+                        <option value="187">Qatar</option>
+                        
+                        <option value="188">Réunion</option>
+                        
+                        <option value="189">Romania</option>
+                        
+                        <option value="190">Russian Federation</option>
+                        
+                        <option value="191">Rwanda</option>
+                        
+                        <option value="192">Saint Barthélemy</option>
+                        
+                        <option value="193">Saint Helena</option>
+                        
+                        <option value="194">Saint Kitts and Nevis</option>
+                        
+                        <option value="195">Saint Lucia</option>
+                        
+                        <option value="196">Saint Martin</option>
+                        
+                        <option value="197">Saint Pierre and Miquelon</option>
+                        
+                        <option value="198">Saint Vincent and the Grenadines</option>
+                        
+                        <option value="199">Samoa</option>
+                        
+                        <option value="200">San Marino</option>
+                        
+                        <option value="201">Sao Tome and Principe</option>
+                        
+                        <option value="202">Saudi Arabia</option>
+                        
+                        <option value="203">Senegal</option>
+                        
+                        <option value="204">Serbia</option>
+                        
+                        <option value="205">Seychelles</option>
+                        
+                        <option value="206">Sierra Leone</option>
+                        
+                        <option value="207">Singapore</option>
+                        
+                        <option value="208">Slovakia</option>
+                        
+                        <option value="209">Slovenia</option>
+                        
+                        <option value="210">Solomon Islands</option>
+                        
+                        <option value="211">Somalia</option>
+                        
+                        <option value="212">South Africa</option>
+                        
+                        <option value="213">South Georgia and the South Sandwich Islands</option>
+                        
+                        <option value="214">Spain</option>
+                        
+                        <option value="215">Sri Lanka</option>
+                        
+                        <option value="217">Suriname</option>
+                        
+                        <option value="218">Svalbard and Jan Mayen</option>
+                        
+                        <option value="219">Swaziland</option>
+                        
+                        <option value="220">Sweden</option>
+                        
+                        <option value="221">Switzerland</option>
+                        
+                        <option value="223">Taiwan</option>
+                        
+                        <option value="224">Tajikistan</option>
+                        
+                        <option value="225">Tanzania, United Republic of</option>
+                        
+                        <option value="226">Thailand</option>
+                        
+                        <option value="227">Timor-Leste</option>
+                        
+                        <option value="228">Togo</option>
+                        
+                        <option value="229">Tokelau</option>
+                        
+                        <option value="230">Tonga</option>
+                        
+                        <option value="231">Trinidad and Tobago</option>
+                        
+                        <option value="232">Tunisia</option>
+                        
+                        <option value="233">Turkey</option>
+                        
+                        <option value="234">Turkmenistan</option>
+                        
+                        <option value="235">Turks and Caicos Islands</option>
+                        
+                        <option value="236">Tuvalu</option>
+                        
+                        <option value="237">Uganda</option>
+                        
+                        <option value="238">Ukraine</option>
+                        
+                        <option value="239">United Arab Emirates</option>
+                        
+                        <option value="240">United Kingdom</option>
+                        
+                        <option value="241">United States</option>
+                        
+                        <option value="242">United States Minor Outlying Islands</option>
+                        
+                        <option value="243">Uruguay</option>
+                        
+                        <option value="244">Uzbekistan</option>
+                        
+                        <option value="245">Vanuatu</option>
+                        
+                        <option value="246">Venezuela</option>
+                        
+                        <option value="247">Viet Nam</option>
+                        
+                        <option value="248">Virgin Islands, British</option>
+                        
+                        <option value="249">Virgin Islands, U.S.</option>
+                        
+                        <option value="250">Wallis and Futuna</option>
+                        
+                        <option value="251">Western Sahara</option>
+                        
+                        <option value="252">Yemen</option>
+                        
+                        <option value="253">Zambia</option>
+                        
+                        <option value="254">Zimbabwe</option>
+                        
+                        <option value="255">Vatican City State</option>
+                        
+                    </select>
+                </div>
+                <div class="grid_3 alpha columnOne">
+                    <label for="address1">address:</label>
+                </div>
+                <div class="grid_8 omega">
+                    <input type="text" id="address1" name="address1" maxlength="255" class='lynda-validate grid_5 alpha' data-notify='["label[for=address1]"]' data-type="required" ng-model="user.address1"/>
+                    <span class="lynda-validate-message"></span>
+                </div>
+                <div class="grid_3 alpha columnOne">
+                    &nbsp;
+                </div>
+                <div class="grid_8 omega">
+                    <input type="text" class='grid_5 alpha' name="address2" maxlength="255" placeholder="apt., suite" ng-model="user.address2"/>
+                </div>
+                <div class="grid_3 alpha columnOne">&nbsp;</div>
+                <div class="grid_8 omega ">
+                    <input type="text" class='lynda-validate grid_2 alpha' name="city" maxlength="255" data-notify='["#cityLabel"]' data-type="required" ng-model="user.city"/>
+                    <span id="stateProvince-selector">
+                        
+                        <select id="stateSelector" class="grid_1 alpha US" ng-model="user.state" ng-show="isUSAddress()">
+                            <option selected="selected" value="Other">select&hellip;</option>
+                            
+                            <option value="Alabama">Alabama</option>
+                            
+                            <option value="Alaska">Alaska</option>
+                            
+                            <option value="Arizona">Arizona</option>
+                            
+                            <option value="Arkansas">Arkansas</option>
+                            
+                            <option value="California">California</option>
+                            
+                            <option value="Colorado">Colorado</option>
+                            
+                            <option value="Connecticut">Connecticut</option>
+                            
+                            <option value="Delaware">Delaware</option>
+                            
+                            <option value="District of Columbia">District of Columbia</option>
+                            
+                            <option value="Florida">Florida</option>
+                            
+                            <option value="Georgia">Georgia</option>
+                            
+                            <option value="Hawaii">Hawaii</option>
+                            
+                            <option value="Idaho">Idaho</option>
+                            
+                            <option value="Illinois">Illinois</option>
+                            
+                            <option value="Indiana">Indiana</option>
+                            
+                            <option value="Iowa">Iowa</option>
+                            
+                            <option value="Kansas">Kansas</option>
+                            
+                            <option value="Kentucky">Kentucky</option>
+                            
+                            <option value="Louisiana">Louisiana</option>
+                            
+                            <option value="Maine">Maine</option>
+                            
+                            <option value="Maryland">Maryland</option>
+                            
+                            <option value="Massachusetts">Massachusetts</option>
+                            
+                            <option value="Michigan">Michigan</option>
+                            
+                            <option value="Minnesota">Minnesota</option>
+                            
+                            <option value="Mississippi">Mississippi</option>
+                            
+                            <option value="Missouri">Missouri</option>
+                            
+                            <option value="Montana">Montana</option>
+                            
+                            <option value="Nebraska">Nebraska</option>
+                            
+                            <option value="Nevada">Nevada</option>
+                            
+                            <option value="New Hampshire">New Hampshire</option>
+                            
+                            <option value="New Jersey">New Jersey</option>
+                            
+                            <option value="New Mexico">New Mexico</option>
+                            
+                            <option value="New York">New York</option>
+                            
+                            <option value="North Carolina">North Carolina</option>
+                            
+                            <option value="North Dakota">North Dakota</option>
+                            
+                            <option value="Ohio">Ohio</option>
+                            
+                            <option value="Oklahoma">Oklahoma</option>
+                            
+                            <option value="Oregon">Oregon</option>
+                            
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            
+                            <option value="Rhode Island">Rhode Island</option>
+                            
+                            <option value="South Carolina">South Carolina</option>
+                            
+                            <option value="South Dakota">South Dakota</option>
+                            
+                            <option value="Tennessee">Tennessee</option>
+                            
+                            <option value="Texas">Texas</option>
+                            
+                            <option value="Utah">Utah</option>
+                            
+                            <option value="Vermont">Vermont</option>
+                            
+                            <option value="Virginia">Virginia</option>
+                            
+                            <option value="Washington">Washington</option>
+                            
+                            <option value="West Virginia">West Virginia</option>
+                            
+                            <option value="Wisconsin">Wisconsin</option>
+                            
+                            <option value="Wyoming">Wyoming</option>
+                            
+                            <option value="US military address">US military address</option>
+                            
+                        </select>
+                        
+                    </span>
+                    <input type="text" class='lynda-validate grid_1 alpha omega' name="zip" maxlength="255" data-notify='["#postalCodeLabel"]' data-type="required" ng-model="user.zip"/>
+                    <span class="lynda-validate-message"></span>
+                </div>
+                <div class="grid_3 columnOne">&nbsp;</div>
+                <div class="grid_8 omega light label addressLabels">
+                    <div id="cityLabel">city</div>
+                    <div id="stateLabel">state</div>
+                    <div id="postalCodeLabel">zip code</div>
+                </div>
+                <div class="grid_3 alpha columnOne">&nbsp;</div>
+                <div class="grid_8 omega">
+                    <p class="termsAndConditions">
+                        By starting the free trial, I confirm that I have<br/>read and accept the <a href="/aboutus/lotTerms.aspx?bnr=TrialRegistrationBilling" target="_blank">terms and conditions</a>.
+                    </p>
+                </div>
+                <div class="grid_3 alpha columnOne">&nbsp;</div>
+                <div class="grid_8 omega">
+                    <input type="submit" class="lynda-button large primary" value="start free trial"/>
+                </div>
+            </div>
+        </form>
+
+        <div class="grid_5 sidepod billingState fade">
+            <h2>Any questions?</h2>
+            <p class="contact">Feel free to call Customer Service at<br/>1 (888) 335-9632 or +1 (805) 477-3900<br/>or <a href="http://www.lynda.com/support/contact.aspx?bnr=TrialRegistrationBilling">send us a message</a>.</p>
+            <h2 class="grid_5 alpha omega" id="billingConditions">Billing conditions</h2>
+            <p class="grid_5 alpha omega">
+                You are signing up for a free 7-day trial. If you cancel by 11:59 p.m. PT on <span class="renewDate"></span>, 2013, you won't be charged for a subscription.
+            </p>
+            <p class="grid_5 alpha omega lastBillingParagraph">
+                At the end of your trial, you will automatically be enrolled in a <span class="planType"></span> <span class="planFrequency"></span> membership that will renew each <span class="renewFrequency"></span>; your credit card will be charged <span class="chosenPrice"></span> on <span class="renewDate"></span>, 2013 and on the same day every <span class="renewFrequency"></span> until you cancel. You can cancel anytime.
+            </p>
+            <a href="http://www.santabarbara.bbb.org/business-reviews/Computer-Training-Schools/Lyndacom-in-Ventura-CA-92003424" onClick="_gaq.push(['_trackEvent', 'Trial', 'BBB Billing', '/trial/registration']);">
+                <img src="../images/betterBusinessBureau.gif?c-v=24739" class="grid_3 alpha bbb-badge" />
+            </a>
+            <div class="verisign_seal" onClick="_gaq.push(['_trackEvent', 'Trial', 'Verisign Billing', '/trial/registration']);">
+                <script type="text/javascript" src="https://seal.verisign.com/getseal?host_name=www.lynda.com&amp;size=L&amp;use_flash=NO&amp;use_transparent=NO&amp;lang=en"></script>
+            </div>
+            <div class="grid_5 alpha omega" id="safeInfoContainer">
+                <img src="../images/lock.png?c-v=24739" class="grid_1 alpha" />
+                <div class="grid_4 omega" id="safeInfo">
+                    Your personal information is safe and will never be shared with any third party.<br/>
+                    <a href="http://www.lynda.com/aboutus/otl-privacy.aspx?bnr=TrialRegistrationBilling" title="Privacy Policy">Our Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div id="securityCodeTip" class="overlay_holder">
+            <div id="securityCodeTipContent" class="overlay_content">
+                <h3>What is the security code?</h3>
+                <p>
+                    This three- or four-digit number is recorded as an additional security precaution.
+                </p>
+                <img src="../images/promo/securityCodeTip.gif?c-v=24739" />
+            </div>
+        </div>
+        <div id="modal-existing-account-container" class="overlay_holder">
+            <div id="modal-existing-account" class="overlay_content">
+                <h1>Welcome back!</h1>
+                <p>
+                    <a href="http://www.lynda.com/home/registration/RenewalStep1.aspx">Reactivate</a> your account to keep your course history, certificates of completion, and queue.
+                </p>
+                <a href="http://www.lynda.com/home/registration/RenewalStep1.aspx" class="lynda-button large primary">reactivate</a>
+                <p class="last-child">The free trial is only available to new members. If you have questions, contact <a href="http://www.lynda.com/support/contact.aspx">Customer Service</a> or call 1 (888) 335-9632 or +1 (805)-477-3900.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<p style="background:url(https://tm.lynda.com/fp/clear.png?org_id=zke1o1by&amp;session_id=b99b29bf-8a1a-4e71-bc38-f2965141fd80&amp;m=1); margin: 0;"></p>
+	<img src="https://tm.lynda.com/fp/clear.png?org_id=zke1o1by&amp;session_id=b99b29bf-8a1a-4e71-bc38-f2965141fd80&amp;m=2" alt="" />
+	<script src="https://tm.lynda.com/fp/check.js?org_id=zke1o1by&amp;session_id=b99b29bf-8a1a-4e71-bc38-f2965141fd80" type="text/javascript"></script>
+	<object type="application/x-shockwave-flash" data="https://tm.lynda.com/fp/fp.swf?org_id=zke1o1by&amp;session_id=b99b29bf-8a1a-4e71-bc38-f2965141fd80" width="1" height="1" id="obj_id">
+		<param name="movie" value="https://tm.lynda.com/fp/fp.swf?org_id=zke1o1by&amp;session_id=b99b29bf-8a1a-4e71-bc38-f2965141fd80" />
+		<div></div>
+	</object>
+<div class="clear"></div>
+<div id="fat-footer">
+	<div id="footer-search">
+		<div id="foot-search">
+			<div class="waitwheel" id="waitwheel_footer"></div>
+			<form action="http://www.lynda.com/search" method="get" id="btmsrch" name="btmsrch">
+				<input type="text" class="srch-box-btm site-search" id="btmsrchbox" name="q" placeholder="What would you like to learn?" />
+				<input type="image" src="images/btn_search_54x18.gif" class="btm-srch-btn" onclick="return validateSearchBox(jQuery('#btmsrchbox'));"/>
+			</form>
+			<script type="text/javascript">
+				jQuery(document).ready(function() {
+					searchSuggestions("input.srch-box-btm","ac_results searchBottom","waitwheel_footer");
+				});				
+			</script>
+		</div>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function()
+		{
+			var ajaxedfooter=parseSecureUrl('https://www.lynda.com/page/ajaxedfooter');
+			jQuery.ajax({ url: ajaxedfooter,
+				dataType: 'html',
+				success: function(data)
+				{
+					
+					jQuery("#foot-tabs li.tab a").unbind('click').bind('click',function(e)
+					{
+						var e=jQuery(this);
+						e.parent().addClass('active').siblings('li.tab').removeClass('active');
+						var section='#'+e.attr('href').split('#')[1];
+						jQuery(section).siblings('div.panel').hide().end().show();
+						return false;
+					});
+				}
+			});
+		})
+	</script>
+	<div id="ajaxedFooter"></div>
+    <div id="footer-share">
+        <hr />
+        <p class="topper">Be the first to hear.</p>
+        <div class="emailCaptureParentDiv">            
+            <div class="enter-email">
+                <p>Get tips, latest courses, and new features.<br /><a href="#email-content" class="modal-trigger">more info</a></p>
+                <div class="capture-field">
+                    <span class="emailCaptureErrorImage">&nbsp;</span>
+                    <span class="emailCaptureMessageDiv"></span>
+                    <input type="text" name="emailCaptureTextBox" class="emailCaptureTextBox cleardefault placeholder" value="your email address" />                
+                    <span class="processing">&nbsp;</span>
+                </div>
+                <a class="btn-yellow emailCaptureSubmitButton"><span>submit</span></a>
+            </div>            
+            <a href="#submit-content" class="modal-trigger" id="thankyou-sidebar">Fat footer submit clicked</a>
+            <input type="hidden" class="emailCaptureTrackingParameter" value="NLsubmit_mship_sidebar" />
+        </div>
+		<div id="follow">
+			<span>Follow us</span>
+			<a target="_blank" href="https://plus.google.com/b/105357980333624323692/105357980333624323692/" title="Follow us on Google+"><img src="/ui/images/gplus-32b.png?c-v=24739" width="32" height="32" alt="Follow us on Google+" /></a>&nbsp;
+			<a target="_blank" href="http://twitter.com/lynda/" title="Follow us on Twitter"><img src="/ui/images/twitter2.gif?c-v=24739" width="32" height="32" alt="Follow us on Twitter" /></a>&nbsp;
+			<a target="_blank" href="http://www.linkedin.com/companies/lynda.com" title="Follow us on LinkedIn"><img src="/ui/images/linkedin2.gif?c-v=24739" width="32" height="32" alt="Follow us on LinkedIn" /></a>&nbsp;
+			<a target="_blank" href="http://www.facebook.com/lynda" title="Follow us on Facebook"><img src="/ui/images/facebook2.gif?c-v=24739" width="32" height="32" alt="Follow us on Facebook" /></a>
+		</div>
+        <hr />
+    </div>
+	<div id="footer-legal">
+		<div class="links">
+			<ul><li><a href="http://www.lynda.com/sitemap" title="Site Map">Site map</a></li>
+				<li><a href="http://www.lynda.com/solutions/resellers.aspx" title="Become a Reseller">Become a reseller</a></li>
+				<li><a href="https://www.lynda.com/partners/affiliates.aspx" title="Affiliate Program">Affiliate program</a></li>
+				<li><a href="http://www.lynda.com/aboutus/otl-privacy.aspx" title="Privacy Policy">Privacy policy</a></li>
+				<li class="last"><a href="http://www.lynda.com/aboutus/lotterms.aspx" title="Terms and Conditions">Terms and conditions</a></li>
+				<li id="consent" class="last"><script type="text/javascript" src="https://consent.truste.com/notice?domain=lynda.com&c=consent&country="></script></li>
+			</ul>
+			<p>&copy; 1995&ndash;2013 lynda.com, Inc. All rights reserved.</p>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<!-- footer: 3/14/2013 8:17:22 PM -->
+		<!--[if IE]>
+		<noscript>
+			<div id="noscript_overlay"></div>
+			<div id="noscript_overlay_holder">
+				<div id="noscript_overlay_message">
+					<div class="noscript_overlay_bar"><h5>Browser security setting set to High</h5><a href="http://www.lynda.com/" class="noscript_overlay_close"><img src="/ui/images/enterprise_redesign/ent_re_icon_close.gif?c-v=24739" alt="" border="" /></a></div>
+					<div class="noscript_overlay_content copy">
+						<p>It appears your browser is set to High security. This setting disables active scripting that is required to use our site. To change your security settings, go to Internet Explorer > Internet Options > Security and set your security level to Medium-high. Then click Apply. Refresh your browser page, and you should be able to use our site.</p>
+						<p>If you can't change your security settings, contact your IT help desk.</p>
+						<p>If you are still having trouble after changing your security settings, use our Contact Us form or call Customer Service at 1 (888) 335-9632 or +1 (805) 477-3900 for further assistance.</p>
+					</div>
+				</div>
+			</div>
+		</noscript>
+		<![endif]-->
+		<script type="text/javascript">
+			var isHttps = ("https:" == document.location.protocol);
+			
+			// crazyegg
+			jQuery.getScript((isHttps?"https:":"http:")+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/2510.js", function() { });
+			
+			// salesforce
+			jQuery.getScript((isHttps?"https:":"http:")+"//lct.salesforce.com/sfga.js",function() { __sfga(); });
+			
+			
+		</script>
+		<script type="text/javascript" src="adroll.js?c-v=24739"></script>
+		
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				if (top && top.document && top.document.location.href != document.location.href && top.document.location.href.toLowerCase().indexOf('//www.lynda.com/') > 0)
+					top.document.location.href = document.location.href;
+
+				jQuery(window).resize(function() { jQuery('div.ac_results').hide(); });
+				var mycoursesMenu=jQuery('#mycourses_menu');
+			
+				if(mycoursesMenu.html())
+				{	
+					if(mycoursesMenu.html().length>0) 
+					{
+						jQuery('#queueMenu').show().find('div').html(mycoursesMenu.html());
+					}
+				}
+				else
+					jQuery('#queueMenu').hide();
+					
+				
+					
+			});
+		</script>
+		
+<img src="https://ad.yieldmanager.com/pixel?id=1880408&t=2" width="1" height="1" />
+
+<div class="overlay_holder">
+    <div id="submit-content" class="overlay_content thank-you">
+        <p class="topper">Thanks for signing up.</p>
+        <p>We&rsquo;ll send you a confirmation email shortly.</p>
+        <hr />
+        <p class="newsletters">By signing up, you&rsquo;ll receive about four emails per month, including</p>
+        <ul>
+            <li>newsletter</li>
+            <li>new course releases</li>
+            <li>special announcements</li>
+        </ul>
+        <p>We&rsquo;ll only use your email address to send you these mailings.</p>
+        <p class="privacy">Here&rsquo;s our <a href="http://www.lynda.com/aboutus/otl-privacy.aspx" target="_blank">privacy policy</a> with more details about how we handle your information.</p>
+    </div>
+</div>
+<div class="overlay_holder">
+    <div id="email-content" class="overlay_content emailCaptureParentDiv">
+        <p class="topper">Keep up with news, tips, and latest courses with emails from lynda.com.</p>
+        <p class="newsletters">By signing up, you&rsquo;ll receive about four emails per month, including</p>
+        <ul>
+            <li>newsletter</li>
+            <li>new course releases</li>
+            <li>special announcements</li>
+        </ul>
+        <p>We&rsquo;ll only use your email address to send you these mailings.</p>
+        <p>Here&rsquo;s our <a href="http://www.lynda.com/aboutus/otl-privacy.aspx" target="_blank">privacy policy</a> with more details about how we handle your information.</p>
+        <div class="capture-field">
+            <div class="emailCaptureMessageDiv"></div>
+            <input type="text" name="emailCaptureTextBox" class="emailCaptureTextBox cleardefault placeholder" value="your email address" />
+            <span id="emailCaptureErrorImage" class="emailCaptureErrorImage">&nbsp;</span>
+            <span class="processing">&nbsp;</span>
+        </div>
+        <a class="btn-blue emailCaptureSubmitButton"><span>submit</span></a>
+        <a href="#submit-content" class="modal-trigger" id="thankyou-lightbox">Lightbox submit clicked</a>
+        <input type="hidden" class="emailCaptureTrackingParameter" value="NLsubmit_mship_lightbox" />
+    </div>
+</div>
+		<img id="dataXuPixel" src="https://securetags.w55c.net/rs?id=68952abc34ed4ff08fc4435dfd8cab28&t=marketing" />
+	
+	</body>
+</html>

@@ -1,0 +1,27 @@
+/* Validation errors and success */
+label.error{
+    color:#DD1B23;
+}
+span.error{
+    color:#DD1B23;
+}
+.lynda-validate-message{
+    font-family:'Verdana';
+    font-size:11px;
+    margin:0 6px;
+    padding:1px 0 0 16px;
+    position:relative;
+    top:4px;
+}
+.lynda-validate-message.error{
+    color:#DD1B23;
+    background:transparent url('../images/validate/error_12x12_red_w.png') center left no-repeat;
+}
+.lynda-validate-message.success{
+    color:green;
+    background:transparent url('../images/validate/success_12x12_green_w.png') center left no-repeat;
+}
+.lynda-validate-message.processing{
+    color:#CCCCCC;
+    background:transparent url('../images/validate/ajax-loader.gif') center left no-repeat;
+}
