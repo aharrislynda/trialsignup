@@ -476,6 +476,11 @@ $(document).ready(function(){
         $('#hiddenEmail').val(emailAddress);
         $('.userEmail').text(emailAddress);
     }
+    fName = QueryString.firstName;
+    if (fName) {
+        $('#hiddenFName').val(fName);
+        $('#startLearningAction').attr('href', 'member?firstName=' + fName);
+    }
 
     chosenID = QueryString.subscriptionId;
     $('#subid').val(chosenID);

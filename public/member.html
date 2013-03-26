@@ -10,7 +10,37 @@
 
 	<link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/reset.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/960_16_col.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/common.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/jquery.fancybox-1.3.1.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/header.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/footer.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/tooltipStyle.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/jquery-modalpopup.css?c-v=24739" /><link rel="stylesheet" type="text/css" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/master.css?c-v=24739" />
  
- 		<script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery-1.7.2.min.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/ready2.js?c-v=24739"></script>
+ 		<script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery-1.7.2.min.js?c-v=24739"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+var QueryString = function () {
+  // This function is anonymous, is executed immediately and 
+  // the return value is assigned to QueryString!
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+        // If first entry with this name
+    if (typeof query_string[pair[0]] === "undefined") {
+      query_string[pair[0]] = pair[1];
+        // If second entry with this name
+    } else if (typeof query_string[pair[0]] === "string") {
+      var arr = [ query_string[pair[0]], pair[1] ];
+      query_string[pair[0]] = arr;
+        // If third or later entry with this name
+    } else {
+      query_string[pair[0]].push(pair[1]);
+    }
+  } 
+    return query_string;
+} ();
+
+    fName = QueryString.firstName;
+    $('.memberFirstName').text(fName);
+    
+})
+        </script>
 
 	
     <link rel="stylesheet" href="http://cdn.lynda.com/assets/release-87/Website/ui/styles/temp_default.css?c-v=24739" type="text/css" charset="utf-8" />
@@ -39,32 +69,7 @@
 
 	<script type="text/javascript">
 		
-		var CourseHistoryHelper = new lynda.page.CourseHistoryHelper(
-			{
-				findCourseHistoryPodData: "http://www.lynda.com/CourseHistory/Pod.sdk",
-				findCourse: "http://www.lynda.com/tutorial/0",
-				findCourseHistory: "http://www.lynda.com/CourseHistory",
-				findCourseHistoryPodHide: "http://www.lynda.com/CourseHistoryPod/Hide/{0}.sdk",
-				findMyTraining: "",
-				findMyTrainingBookMark: "http://www.lynda.com/MyTraining/Bookmarks/page/1",
-				findCertificationStatus: "http://www.lynda.com/home/CertificateOfCompletion/CertificationStatus.aspx",
-				findPopularCourse: "http://www.lynda.com/TopCourses/{0}",
-				queue: "http://www.lynda.com/Playlist",
-				findMovieHistory: "",
-				findCategoryAllCourses: "http://www.lynda.com/allcourses",
-				emptyQueueVideoLink: "javascript:ShowWindowN(2069482,'/player/popup?lpk4=97408', 960,540,77683); return false;",
-				playlistGet: "http://www.lynda.com/Playlist/Get",
-				playlistGetItems: "http://www.lynda.com/Playlist/{0}/GetItems"
-			},
-			true,
-			true,
-			true
-		);
-
-		jQuery(document).ready(function () {
-			CourseHistoryHelper.loadMyCourseTabs();
-			usercollections.rerender();
-		});
+		
 	</script>
 
 	<h1 class="homePodTop">
@@ -390,7 +395,7 @@
 		
 <div id="eyebrow">
 	<ul class="nav member-links">
-		<li class="first"><strong>Hi, Andrew</strong></li>		
+		<li class="first"><strong>Hi, <span class="memberFirstName"></span></strong></li>		
 		<li class="with-sub-menu">
 			<a href="http://www.lynda.com/membership">products</a>
 			<div class="sub hidden">
@@ -495,17 +500,7 @@
 				<input type="text" class="srch-box-top site-search" id="srchbox" name="q" placeholder="What would you like to learn?" />
 				<input type="image" src="http://cdn.lynda.com/assets/release-87/Website/ui/images/btn_search_54x18.gif?c-v=24739" class="top-srch-btn" onclick="return validateSearchBox(jQuery('#srchbox'));"/>
 			</form>
-			<script type="text/javascript">
-				if(lynda&&lynda.baseUrl)
-				{
-					var url=jQuery('div#logo>a').attr('href'); 
-					if(url)
-						lynda.baseUrl=url;
-				}
-				jQuery(document).ready(function() {
-					searchSuggestions("input.srch-box-top","ac_results searchTop","waitwheel_header");
-				});
-			</script>
+			
 		</div>
            
 
@@ -662,7 +657,7 @@
 	<script type="text/javascript">
 		jQuery(document).ready(function()
 		{
-			var ajaxedfooter=parseSecureUrl('http://www.lynda.com/page/ajaxedfooter');
+			var ajaxedfooter=parseSecureUrl('http://www.lynda.com/page/ajaxedfooter);
 			jQuery.ajax({ url: ajaxedfooter,
 				dataType: 'html',
 				success: function(data)
@@ -733,7 +728,7 @@
 
 	<div id="section-sitefeedback"><a id="feedback-modal" href="http://www.lynda.com/user/feedback/modal">site feedback</a></div>
 
-	<script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery.fancybox-1.3.1.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/superfish.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/Cookies.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/lynda.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/ShowWindow.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery-modalpopup.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/popupWindow.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery.autocomplete.all.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/plugin.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/plugindetect.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/master.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/emailCapture.js?c-v=24739"></script>
+	<script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery.fancybox-1.3.1.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/superfish.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/Cookies.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/lynda.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/ShowWindow.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery-modalpopup.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/popupWindow.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/jquery.autocomplete.all.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/plugin.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/plugindetect.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/master.js?c-v=24739"></script><script type="text/javascript" src="http://cdn.lynda.com/assets/release-87/Website/ui/scripts/emailCapture.js?c-v=24739"></script><script type="text/javascript" src="js/prototype.js"></script>
         <script type="text/javascript">
             var emailCaptureUrl = 'http://www.lynda.com/EmailCapture';
             var emailCaptureCurrentPageUrl = "/member.aspx";
