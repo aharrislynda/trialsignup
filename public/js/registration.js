@@ -485,11 +485,11 @@ $(document).ready(function(){
     chosenID = QueryString.subscriptionId;
     $('#subid').val(chosenID);
     $('#subid2').val(chosenID);
-    var todayDate = "Mar 27";
+    var todayDate = "Mar 29";
     $('.todayDate').text(todayDate);
-    var endDate = "Apr 3";
+    var endDate = "Apr 5";
     $('.endDate').text(endDate);
-    var renewDate = "Apr 4";
+    var renewDate = "Apr 6";
     $('.renewDate').text(renewDate);
     if (chosenID == '1001') {
         $('.planFrequencyMonthly').text('Monthly');
