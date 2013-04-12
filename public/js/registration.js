@@ -485,12 +485,13 @@ $(document).ready(function(){
     chosenID = QueryString.subscriptionId;
     $('#subid').val(chosenID);
     $('#subid2').val(chosenID);
-    var todayDate = "Mar 29";
-    $('.todayDate').text(todayDate);
-    var endDate = "Apr 5";
-    $('.endDate').text(endDate);
-    var renewDate = "Apr 6";
-    $('.renewDate').text(renewDate);
+    var dateNow = new Date();
+    var todayDate = dateNow.getDate();
+    $('.todayDate').text("Apr " + todayDate);
+    var endDate = todayDate + 7;
+    $('.endDate').text("Apr " + endDate);
+    var renewDate = endDate + 1;
+    $('.renewDate').text("Apr " + renewDate);
     if (chosenID == '1001') {
         $('.planFrequencyMonthly').text('Monthly');
         $('.planPriceMonthly').text('$25.00');
@@ -552,7 +553,7 @@ $(document).ready(function(){
         $(".issueAlert").show();
     }
 
-    $('#expMonth option[value=3]').prop('selected',true);
+    $('#expMonth option[value=4]').prop('selected',true);
     $('#countrySelector option[value=241]').prop('selected', true);
     $('.billingState').show();
     $('.completeState').show();
